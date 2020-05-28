@@ -1,4 +1,4 @@
-package gee_cache
+package geecache
 
 import (
 	"fmt"
@@ -19,8 +19,8 @@ func (f GetterFunc) Get(key string) ([]byte, error) {
 
 
 type Group struct {
-	name string
-	getter Getter
+	name      string
+	getter    Getter
 	mainCache cache
 }
 
@@ -38,7 +38,7 @@ func NewGroup(name string, cacheBytes int64, getter Getter) *Group {
 	g := &Group{
 		name:      name,
 		getter:    getter,
-		mainCache: cache{cacheBytes:cacheBytes},
+		mainCache: cache{cacheBytes: cacheBytes},
 	}
 	groups[name] = g
 	return g
@@ -71,7 +71,7 @@ func (g *Group) getLocally(key string) (ByteView, error) {
 	if err != nil {
 		return ByteView{}, err
 	}
-	value := ByteView{b:cloneBytes(bytes)}
+	value := ByteView{b: cloneBytes(bytes)}
 	g.populateCache(key, value)
 	return value, nil
 }

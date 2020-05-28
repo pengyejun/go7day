@@ -1,7 +1,10 @@
-package gee_cache
+package geecache
 
-import "sync"
-import "gee-cache/lru"
+import (
+	"gee-cache/lru"
+	"sync"
+)
+
 
 type cache struct {
 	mu sync.Mutex
